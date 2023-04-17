@@ -130,3 +130,5 @@ PCA exam points:
 data flow:
     moving, processing, remembering
     -> network -> compute -> storage
+
+    test for change something in another nb
