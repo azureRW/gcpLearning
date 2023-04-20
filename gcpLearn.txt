@@ -115,6 +115,42 @@ network:
 
     
 ======================================================
+Cloud IM (security)
+    The hierarchy in gcp from high is started with organization, folders, projects, resources.
+    Generally organization is the node of whole structure or tree, which normally represents
+    your company. And the folders can be the representation of your departments.
+
+    gcp basic roles:
+        Owner: Owner has full administrative that includes remove members and delete projects.
+        Editor: The editor role has modify and delete access.
+        Viewer: read-only
+        Billing Administrator: manage billing and add or removing administrators
+            ps: Owner has all privilege Editor has and Edit also has all privilege Viewer has.
+            Basic roles have their own specific privilege in different services(network, storage, engine).
+            GCP still provides an another flexible way to let company authorize their employees -- 
+            Custom Roles (list base).
+
+     Members:
+        google account: as its name a google account
+        
+        service account: is a account for applications instead of end user 
+        
+        google groups: is a named of collection of google accounts and service accounts
+        
+        google workspace domains: represent your organization's internet domain name
+        
+        cloud identity domains: Google Cloud customers who are not Workspace customers 
+            can get these same capabilities through Cloud Identity. 
+    
+    IM resource hierarchy:
+        A policy is a collection of access statements attached to resources.
+        Each policy contains a set of roles and role members
+        
+
+
+
+
+======================================================
 PCA exam points:
     1. designing and planing  cloud solution architecture
     2. managing and provisioning infrastructure
@@ -131,4 +167,3 @@ data flow:
     moving, processing, remembering
     -> network -> compute -> storage
 
-    test for change something in another nb
