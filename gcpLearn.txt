@@ -12,9 +12,9 @@ development:
 GCP storage:
     GCP provides three types of storage operations: object storage, persistent
     local and attached storage, and relational and NoSQL databases.
-    
+
     Google Cloud Storage (GCS) :
-        is an object storage system designed for 
+        is an object or binary storage system designed for 
         persisting unstructured data such as data files, images, videos, backup files
         and any other data. There are several region types and classes to choose from,
         such as mono region, dual region, and multiple region, and classes based on access 
@@ -29,7 +29,7 @@ GCP storage:
         It can only scale vertically.
     
     Cloud Spanner :
-        is a managed SQL database that supports horizontal scaling.
+        is a managed SQL database that supports horizontal scaling and scale globally.
     
     BigQuery :
         is a managed analytics service that uses SQL language to query data. 
@@ -37,8 +37,9 @@ GCP storage:
     
     Cloud Bigtable 
         is a PB-scale NoSQL and key-value database for analytic operations, 
-        such as IOT services. It has follower features, low latency, 
+        such as IOT services and ML. It has follower features, low latency, 
         PB-scale, regional replication, specific commands, and supports Hadoop and HBase.
+        but! it so not support transaction.
     
     Cloud Datastore     
         is a managed document database that uses a flexible 
@@ -47,6 +48,11 @@ GCP storage:
     Cloud Memorystore 
         is a managed Redis service, which is an open-source 
         in-memory data store.
+    
+    Firestore(next generation cloud data store) :
+        is a NoSQL document database for mobile, web and iot apps at global scale.
+        It also support ACID transaction and multi-region replication.
+        If our data lager than 1 tb google recommend us to use Cloud Bigtable.
 
 ======================================================
 
