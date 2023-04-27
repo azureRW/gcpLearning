@@ -1,5 +1,6 @@
 this is a node to record some problem I encounter when I learn gcp    
-    IaaS vs PaaS ->
+    
+IaaS vs PaaS ->
         infrastructure as a service vs platform as a service
 
 development:
@@ -13,7 +14,7 @@ GCP storage:
     GCP provides three types of storage operations: object storage, persistent
     local and attached storage, and relational and NoSQL databases.
 
-    Google Cloud Storage (GCS) :
+    Google Cloud Storage (GCS/Buckets) :
         is an object or binary storage system designed for 
         persisting unstructured data such as data files, images, videos, backup files
         and any other data. There are several region types and classes to choose from,
@@ -33,7 +34,7 @@ GCP storage:
     
     BigQuery :
         is a managed analytics service that uses SQL language to query data. 
-        It can handle large amounts of data (TB or PB) and return information via fuzzy matching.
+        It can handle large amounts of data (TB or PB) and return analytic information.
     
     Cloud Bigtable 
         is a PB-scale NoSQL and key-value database for analytic operations, 
@@ -105,20 +106,27 @@ network:
         Hybrid-Cloud Implementation Options:
             Cloud VPN 
                 is a security process to encrypted the data between two networks.
-            Cloud Interconnect 
+                Data will be encrypted when it pass gcp vpn gateway and be decrypted destined gateway,
+                then the data will be protected when it in public network. And it is useful for low-volume.
+
+            Cloud Interconnect(Dedicated Interconnect/Partner Interconnect) 
                 provides high throughput and highly available networking between
                 GCP abd on-premises networks. The data is transmit via google private network, so we don't
                 need to care about the security problem, but the drawback is that cost is expensive so if low
                 latency and high availability is not required then Cloud VPN is the better option.
-            Direct Peering
-                is a network configuration using Border Gateway Protocol routes.
+            Direct/Partner Peering
+                Access to gcp via public ip.
 
     Load Balancing :
-
         Generally, GCP provides regional and global, 2 types of load balancers.
+
+    Cloud CDN:
+
                 
 
-
+======================================================
+Compute system
+    load balancer:
     
 ======================================================
 Cloud IM (security)
@@ -157,6 +165,23 @@ Cloud IM (security)
 
 
 ======================================================
+Quotas:
+    Generally, per gcp project has its own limitation of instance, npc and other resources. The reason is 
+    it can help user avoid some accidents such create 100 instances or something. And when our demand is touch
+    the ceiling and then we can modify the quotas to match our demand.
+
+Labels:
+    Labels ate key value pairs that we can attache to our resources. It is convenient when we need to manage the 
+    billing of our resources and we need to statistic consumption.
+
+Cloud Trace service:
+    Reporting on latency as part of managing performance.
+
+    
+
+
+======================================================
+
 PCA exam points:
     1. designing and planing  cloud solution architecture
     2. managing and provisioning infrastructure
