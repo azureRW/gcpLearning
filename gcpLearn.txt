@@ -11,6 +11,7 @@ development:
 ======================================================
 
 GCP storage:
+
     GCP provides three types of storage operations: object storage, persistent
     local and attached storage, and relational and NoSQL databases.
 
@@ -59,7 +60,7 @@ GCP storage:
 
 network:
 
-    Virtual Private Clouds(VPC) :
+        Virtual Private Clouds(VPC) :
         Like a network in data center but it actually has not regional limitation.
         It can span multiple regions. For example, we can ping another instance in EU from USA as like a 
         local area network if there are in a same project or organization.
@@ -122,12 +123,73 @@ network:
 
     Cloud CDN:
 
+    Cloud NAT:
+
                 
 
 ======================================================
+I do not know where it should be
+
+HTTP and HTTPs
+
+======================================================
+case TerramEarth
+    overview
+        1 global enterprise
+        2 20% yearly growth
+        3 2million vehicles in operation currently
+        4 each vehicle generates 200~500 mb per day and it should be send to their home base 
+        5
+
+
+
+
+
+======================================================
+
+
 Compute system
-    load balancer:
-    
+
+    Compute Engine                      |   (IaaS)
+    Google Kubernetes Engine            +-- docker relative (IaaS)/(PaaS) 
+    Cloud Run                           +-- docker relative (PaaS)
+    App Engine                          +-- docker relative (PaaS)/(FaaS)
+    Cloud Function                      |   (FaaS)
+
+    Compute Engine: 
+        Nothing special, a computer.
+
+    App Engine:
+        The features of app engine is that it can hold several versions of app(or services) at same time.
+        Then we can test its function or rall back it conveniently.
+
+    Google Kubernetes Engine:
+
+        label: a k-v pairs which we tag our objects 
+
+            ex:(yaml) 
+                labels:
+                    app: nginx
+                    env: dev
+                    stack: frontend
+        
+        in kubctl, we can get pod via this command:
+            >kubctl get pods --selector=app=nginx
+        
+        Pods: 
+            Basically, a instance(computer) it can contain one or more containers. And we should deploy 
+            several replicate pods at same time, then the services in these pods should be decoupled and sateless.
+
+        ReplicaSets:    
+            A ReplicaSet is a controller that manages the number of pods running for a deployment. 
+
+        Deployments:
+
+
+
+        
+
+
 ======================================================
 Cloud IM (security)
     The hierarchy in gcp from high is started with organization, folders, projects, resources.
