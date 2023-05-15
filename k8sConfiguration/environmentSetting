@@ -1,0 +1,91 @@
+
+#   如果無法join或init試試這個 我也不知為毛
+sudo rm /etc/containerd/config.toml
+sudo systemctl restart containerd
+
+
+#   禁用selinux
+sudo setenforce 0
+sudo sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config
+
+#   關閉swap
+sudo swapoff -a  
+sudo sed -ri 's/.*swap.*/#&/' /etc/fstab
+
+#   安裝docker
+sudo yum install -y yum-utils
+sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+
+sudo yum install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+sudo systemctl start docker
+sudo usermod -aG docker $(whoami)
+sudo service docker start
+
+
+#   關閉防火牆與iptable
+sudo systemctl stop firewalld
+sudo systemctl disable firewalld
+
+sudo systemctl stop iptables
+sudo systemctl disable iptables
+
+
+
+sudo cat <<EOF | sudo tee /etc/sysctl.d/k8s.conf
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+EOF
+
+sudo sysctl --system
+
+#   設置鏡像來源與安裝
+sudo cat <<EOF | sudo tee /etc/yum.repos.d/kubernetes.repo
+[kubernetes]
+name=Kubernetes
+baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-\$basearch
+enabled=1
+gpgcheck=1
+gpgkey=https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+exclude=kubelet kubeadm kubectl
+EOF
+
+# Set SELinux in permissive mode (effectively disabling it)
+sudo setenforce 0
+sudo sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config
+
+sudo yum install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
+
+sudo systemctl enable --now kubelet
+
+
+sudo -- sh -c "echo '1' >> /proc/sys/net/ipv4/ip_forward"
+
+
+
+
+# successful example
+Your Kubernetes control-plane has initialized successfully!
+
+To start using your cluster, you need to run the following as a regular user:
+
+  mkdir -p $HOME/.kube
+  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+Alternatively, if you are the root user, you can run:
+
+  export KUBECONFIG=/etc/kubernetes/admin.conf
+
+You should now deploy a pod network to the cluster.
+Run "kubectl apply -f [podnetwork].yaml" with one of the options listed at:
+  https://kubernetes.io/docs/concepts/cluster-administration/addons/
+
+Then you can join any number of worker nodes by running the following on each as root:
+
+kubeadm join 10.140.0.10:6443 --token 4gqlxe.kmugqt8eu9jricgu --discovery-token-ca-cert-hash sha256:118b9e706a0f9a69979890ca5ee2ff3bcae6b56a37c79173863bede5f86cae37
+
+
+
+kubeadm init \
+	--service-cidr=10.96.0.0/12 \
+	--pod-network-cidr=10.244.0.0/16

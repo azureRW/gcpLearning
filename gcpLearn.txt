@@ -1,4 +1,4 @@
-this is a node to record some problem I encounter when I learn gcp    
+this is a note to record some problem I encounter when I learn gcp    
     
 IaaS vs PaaS ->
         infrastructure as a service vs platform as a service
@@ -176,18 +176,42 @@ Compute system
         in kubctl, we can get pod via this command:
             >kubctl get pods --selector=app=nginx
         
+======================================================
+k8s
+    k8s crusts is constructed by node* 
+
+    master node: 
+        ApiServer : user interface
+        Scheduler : decide which component should process the work
+        Controller-manager : detected and manage cluster
+        etcd : k-y state of cluster 
+    worker(slave) node:
+        kubelet : interact container and node
+        kube-proxy
+        docker(container runtime) : the services provider
+        
         Pods: 
-            Basically, a instance(computer) it can contain one or more containers. And we should deploy 
-            several replicate pods at same time, then the services in these pods should be decoupled and sateless.
+            asically, a instance(computer) it can contain one or more containers. And we should deploy 
+            everal replicate pods at same time, then the services in these pods should be decoupled and sateless.
 
-        ReplicaSets:    
-            A ReplicaSet is a controller that manages the number of pods running for a deployment. 
+        replicaSets:    
+             ReplicaSet is a controller that manages the number of pods running for a deployment. 
 
-        Deployments:
+        deployments:
+            bstraction layer over pods
+
 
 
 
         
+
+======================================================
+
+Migration
+
+    Anothos:
+        a app can help when migration
+
 
 
 ======================================================

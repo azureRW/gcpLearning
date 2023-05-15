@@ -1,0 +1,10 @@
+
+mount '~/temp/' on '/usr/share/nginx/html' 
+and background excuse(-d)
+and expose 80:80
+===============
+docker run \
+-v ~/temp/:/usr/share/nginx/html:rw \
+-d -p 80:80 \
+nginx
+===============
