@@ -41,6 +41,7 @@ GCP storage:
         is a PB-scale NoSQL and key-value database for analytic operations, 
         such as IOT services and ML. It has follower features, low latency, 
         PB-scale, regional replication, specific commands, and supports Hadoop and HBase.
+        appropriate for time serials data
         but! it so not support transaction.
     
     Cloud Datastore     
@@ -112,7 +113,7 @@ network:
 
             Cloud Interconnect(Dedicated Interconnect/Partner Interconnect) 
                 provides high throughput and highly available networking between
-                GCP abd on-premises networks. The data is transmit via google private network, so we don't
+                GCP and on-premises networks. The data is transmit via google private network, so we don't
                 need to care about the security problem, but the drawback is that cost is expensive so if low
                 latency and high availability is not required then Cloud VPN is the better option.
             Direct/Partner Peering
@@ -130,7 +131,8 @@ network:
 ======================================================
 I do not know where it should be
 
-HTTP and HTTPs
+Resilience test :
+    is something about terminate resources and service not affected.
 
 ======================================================
 case TerramEarth
@@ -190,15 +192,15 @@ k8s
         kube-proxy
         docker(container runtime) : the services provider
         
-        Pods: 
-            asically, a instance(computer) it can contain one or more containers. And we should deploy 
-            everal replicate pods at same time, then the services in these pods should be decoupled and sateless.
+     Pods: 
+         Basically, a instance(computer) it can contain one or more containers. And we should deploy 
+         several replicate pods at same time, then the services in these pods should be decoupled and sateless.
 
-        replicaSets:    
-             ReplicaSet is a controller that manages the number of pods running for a deployment. 
+     ReplicaSets:    
+         A ReplicaSet is a controller that manages the number of pods running for a deployment. 
 
-        deployments:
-            bstraction layer over pods
+     Deployments:
+        abstraction layer over pods
 
 
 
@@ -215,8 +217,7 @@ Migration
 
 
 ======================================================
-Cloud IM (security)
-    The hierarchy in gcp from high is started with organization, folders, projects, resources.
+Cloud IAM (security) The hierarchy in gcp from high is started with organization, folders, projects, resources.
     Generally organization is the node of whole structure or tree, which normally represents
     your company. And the folders can be the representation of your departments.
 
@@ -242,9 +243,12 @@ Cloud IM (security)
         cloud identity domains: Google Cloud customers who are not Workspace customers 
             can get these same capabilities through Cloud Identity. 
     
-    IM resource hierarchy:
+    IAM resource hierarchy:
         A policy is a collection of access statements attached to resources.
         Each policy contains a set of roles and role members
+        The policies will be inherited from node's ancestor.(From hight to low)
+        For ex: I am a project owner and I granted Andy a folder owner under my project 
+        then Andy will automatically have the hierarchy to access any resources in this folder.
         
 
 
