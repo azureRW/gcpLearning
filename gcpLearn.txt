@@ -1,13 +1,5 @@
 this is a note to record some problem I encounter when I learn gcp    
-    
-IaaS vs PaaS ->
-        infrastructure as a service vs platform as a service
 
-development:
-    gcp provide serials tool such as gutbucket lab..
-    Terraform : a tool for build application environment template via HashiCorp Configure Language
-        infrastructure as code (IaC) tool 
-        <- kind of like dockerFile in docker but for infrastructure
 ======================================================
 
 GCP storage:
@@ -33,9 +25,9 @@ GCP storage:
         accessible from Compute Engine and Kubernetes Engine.
     
     Cloud SQL :
-        is a managed database that provides a MySQL and PostgreSQL server. 
+        is a managed database that provides MySQL and PostgreSQL server. 
         It can only scale vertically.
-        * it also provide managed mssql server now!
+        * it also provides managed mssql server now!
     
     Cloud Spanner :
         is a managed SQL database that supports horizontal scaling and scale globally.
@@ -48,7 +40,7 @@ GCP storage:
         is a PB-scale NoSQL and key-value database for analytic operations, 
         such as IOT services and ML. It has follower features, low latency, 
         PB-scale, regional replication, specific commands, and supports Hadoop and HBase.
-        appropriate for time serials data
+        It is appropriate for time serials data.
         but! it so not support transaction.
     
     Cloud Datastore     
@@ -139,16 +131,10 @@ network:
 I do not know where it should be
 
 Resilience test :
-    is something about terminate resources and service not affected.
+    It is something about terminate resources and service not affected.
 
 ======================================================
-case TerramEarth
-    overview
-        1 global enterprise
-        2 20% yearly growth
-        3 2million vehicles in operation currently
-        4 each vehicle generates 200~500 mb per day and it should be send to their home base 
-        5
+
 
 
 
@@ -187,7 +173,7 @@ Compute system
         
 ======================================================
 k8s
-    k8s crusts is constructed by node* 
+    k8s cluster is constructed by node* 
 
     master node: 
         ApiServer : user interface
@@ -196,17 +182,17 @@ k8s
         etcd : k-y state of cluster 
     worker(slave) node:
         kubelet : interact container and node
-        kube-proxy
+        kube-proxy : 
         docker(container runtime) : the services provider
         
-     Pods: 
-         Basically, a instance(computer) it can contain one or more containers. And we should deploy 
-         several replicate pods at same time, then the services in these pods should be decoupled and sateless.
+    Pods: 
+        Basically, a instance(computer) it can contain one or more containers. And we should deploy 
+        several replicate pods at same time, then the services in these pods should be decoupled and sateless.
 
-     ReplicaSets:    
-         A ReplicaSet is a controller that manages the number of pods running for a deployment. 
+    ReplicaSets:    
+        A ReplicaSet is a controller that manages the number of pods running for a deployment. 
 
-     Deployments:
+    Deployments:
         abstraction layer over pods
 
 
