@@ -21,6 +21,12 @@ GCP storage:
         and any other data. There are several region types and classes to choose from,
         such as mono region, dual region, and multiple region, and classes based on access 
         frequency (Standard, Nearline, Coldline, and Archive).
+
+        Steps if we want to upload files from our on-premise environment to cloud storage and we want 
+        the files to be encrypted: 
+            Supply the encryption key in a .boto configuration file.
+            Use gsutil to upload the files.
+
     
     Cloud Filestore :
         is a network-attached storage service that provides a file system 
@@ -29,6 +35,7 @@ GCP storage:
     Cloud SQL :
         is a managed database that provides a MySQL and PostgreSQL server. 
         It can only scale vertically.
+        * it also provide managed mssql server now!
     
     Cloud Spanner :
         is a managed SQL database that supports horizontal scaling and scale globally.
