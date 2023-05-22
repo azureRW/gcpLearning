@@ -19,22 +19,42 @@ GCP storage:
             Supply the encryption key in a .boto configuration file.
             Use gsutil to upload the files.
 
+        gsutil : a python base tool lets we can access GCS from cmd line
     
     Cloud Filestore :
         is a network-attached storage service that provides a file system 
         accessible from Compute Engine and Kubernetes Engine.
     
     Cloud SQL :
-        is a managed database that provides MySQL and PostgreSQL server. 
-        It can only scale vertically.
+        is a managed regional database that provides MySQL and PostgreSQL server. 
+        It can only scale vertically, we can enable the automatic storage increase setting,
+        then it can auto increase its volume without downtime.
         * it also provides managed mssql server now!
+
+        Replication problem:
+            DB usually has several replication, and one of the replications is the master 
+            replication(Master-Slave Architecture).
+            
+            'Read replica' and 'Failover replica' in GCP :
+                Read:
+                    When referring to a Cloud SQL instance, the instance that is replicated is called 
+                    the primary instance and the copies are called read replicas. The primary instance 
+                    and read replicas reside in Cloud SQL. In a disaster recovery scenario, we also can promote 
+                    a replica to convert it to a primary instance.
+                Failover:
+                    It is concentrate in disaster recovery, but it seems to be decrypted. 
+
+        OLAP and regional => Cloud Spanner
+
     
     Cloud Spanner :
         is a managed SQL database that supports horizontal scaling and scale globally.
+        OLAP and globally => Cloud Spanner
     
     BigQuery :
         is a managed analytics service that uses SQL language to query data. 
         It can handle large amounts of data (TB or PB) and return analytic information.
+        OLAP=>BQ
     
     Cloud Bigtable 
         is a PB-scale NoSQL and key-value database for analytic operations, 
@@ -109,6 +129,7 @@ network:
                 is a security process to encrypted the data between two networks.
                 Data will be encrypted when it pass gcp vpn gateway and be decrypted destined gateway,
                 then the data will be protected when it in public network. And it is useful for low-volume.
+                * it is a regional service
 
             Cloud Interconnect(Dedicated Interconnect/Partner Interconnect) 
                 provides high throughput and highly available networking between
@@ -121,7 +142,12 @@ network:
     Load Balancing :
         Generally, GCP provides regional and global, 2 types of load balancers.
 
+     
+
     Cloud CDN:
+        Practices to optimize CDN : 
+        
+
 
     Cloud NAT:
 
@@ -133,8 +159,13 @@ I do not know where it should be
 Resilience test :
     It is something about terminate resources and service not affected.
 
-======================================================
+Reliable :
 
+High availability :
+    HA means we have to reduce downtime to the minima. When it comes to CloudSql,
+    GCP provided solution is data redundancy. When the master node is down, the replica
+    can be prompt to prevent the services stop their work. And CloudSql is a regional service,
+    then replicas generally will be in another zone.
 
 
 

@@ -8,3 +8,22 @@ docker run \
 -d -p 80:80 \
 nginx
 ===============
+# mount directory in to docker
+docker run -idt \
+-v /Users/azmac/Desktop/code/docker/tForMount/:/home/ \
+centos:7
+===============
+# mount a web into nginx
+docker run -idt \
+-v /Users/azmac/Desktop/code/docker/nginx/:/usr/share/nginx/html/ \
+-p 127.0.0.1:8080:80 \
+--name webserver \
+nginx:latest
+
+===============
+# mongoDB
+docker run \
+--name mon00 \
+-p 127.0.0.1:27017:27017 \
+mongo:4.2-bionic
+
