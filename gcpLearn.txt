@@ -8,9 +8,9 @@ GCP storage:
     local and attached storage, and relational and NoSQL databases.
 
     Google Cloud Storage (GCS/Buckets) :
-        is an object or binary storage system designed for 
-        persisting unstructured data such as data files, images, videos, backup files
-        and any other data. There are several region types and classes to choose from,
+        is an object or binary storage system designed for persisting unstructured data 
+        such as data files, images, videos, backup files and any other data. 
+        There are several region types and classes to choose from,
         such as mono region, dual region, and multiple region, and classes based on access 
         frequency (Standard, Nearline, Coldline, and Archive).
 
@@ -45,6 +45,7 @@ GCP storage:
                     It is concentrate in disaster recovery, but it seems to be decrypted. 
 
         OLAP and regional => Cloud Spanner
+        Binary logging : something can help if catastrophic failure happen.
 
     
     Cloud Spanner :
@@ -65,16 +66,16 @@ GCP storage:
     
     Cloud Datastore     
         is a managed document database that uses a flexible 
-        JSON-like data structure called a document.
+        JSON-like data structure called document.
     
     Cloud Memorystore 
         is a managed Redis service, which is an open-source 
         in-memory data store.
     
     Firestore(next generation cloud data store) :
-        is a NoSQL document database for mobile, web and iot apps at global scale.
+        A NoSQL document database for mobile, web and iot apps works around global scale.
         It also support ACID transaction and multi-region replication.
-        If our data lager than 1 tb google recommend us to use Cloud Bigtable.
+        If our data lager than 1 tb google, recommend us to use Cloud Bigtable.
 
 ======================================================
 
@@ -125,19 +126,28 @@ network:
             If the cost of maintaining 2 or more interconnect is acceptable we should use it.
 
         Hybrid-Cloud Implementation Options:
-            Cloud VPN 
-                is a security process to encrypted the data between two networks.
-                Data will be encrypted when it pass gcp vpn gateway and be decrypted destined gateway,
-                then the data will be protected when it in public network. And it is useful for low-volume.
-                * it is a regional service
 
             Cloud Interconnect(Dedicated Interconnect/Partner Interconnect) 
                 provides high throughput and highly available networking between
                 GCP and on-premises networks. The data is transmit via google private network, so we don't
                 need to care about the security problem, but the drawback is that cost is expensive so if low
                 latency and high availability is not required then Cloud VPN is the better option.
-            Direct/Partner Peering
-                Access to gcp via public ip.
+                * If it is a selection we should prefer this first.
+            
+            Cloud VPN 
+                is a security process to encrypted the data between two networks.
+                Data will be encrypted when it pass gcp vpn gateway and be decrypted destined gateway,
+                then the data will be protected when it in public network. And it is useful for low-volume.
+                * it is a regional service
+            
+            Direct/Partner(carrier) Peering
+                Traffic sent from resources in a VPC network leaves by way of a route whose next hop is either 
+                a default internet gateway (a default route, for example) or a Cloud VPN tunnel. 
+                If the destination for the traffic matches your on-premises IP ranges, it could be eligible 
+                for discounted egress rates.
+                 * I dont know what is the shi...
+
+
 
     Load Balancing :
         Generally, GCP provides regional and global, 2 types of load balancers.
@@ -148,16 +158,14 @@ network:
         Practices to optimize CDN : 
         
 
-
     Cloud NAT:
-
                 
 
 ======================================================
 I do not know where it should be
 
 Resilience test :
-    It is something about terminate resources and service not affected.
+    It is something about terminate resources but service should not  be affected.
 
 Reliable :
 
@@ -168,11 +176,7 @@ High availability :
     then replicas generally will be in another zone.
 
 
-
-
-
 ======================================================
-
 
 Compute system
 
@@ -186,8 +190,9 @@ Compute system
         Nothing special, a computer.
 
     App Engine:
-        The features of app engine is that it can hold several versions of app(or services) at same time.
-        Then we can test its function or rall back it conveniently.
+        The features of app engine is that it can natively hold several versions of app(or services) 
+        at same time. Then we can test its function or rall back it conveniently.
+        So, when it comes to version control, we should select this.
 
     Google Kubernetes Engine:
 
@@ -228,13 +233,23 @@ k8s
 
 
 
-
-        
-
 ======================================================
 
 Migration
 
+    GCP recommend 4 step to migrate to google cloud
+
+        Assess :
+            In this phase, you assess your source environment, assess the workloads that you want to
+            migrate to Google Cloud, and assess which VMs support each workload.
+        Plan : 
+            In this phase, you create the basic infrastructure for Migrate to VMs, 
+            such as provisioning the resource hierarchy and setting up network access.
+        Deploy :  
+            In this phase, you migrate the VMs from the source environment to Compute Engine.
+        Optimize : 
+            In this phase, you begin to take advantage of the cloud technologies and capabilities.
+            
     Anothos:
         a app can help when migration
 
@@ -274,14 +289,10 @@ Cloud IAM (security) The hierarchy in gcp from high is started with organization
         For ex: I am a project owner and I granted Andy a folder owner under my project 
         then Andy will automatically have the hierarchy to access any resources in this folder.
         
-
-
-
-
 ======================================================
 Quotas:
     Generally, per gcp project has its own limitation of instance, npc and other resources. The reason is 
-    it can help user avoid some accidents such create 100 instances or something. And when our demand is touch
+    it can help user avoid some accidents such create 100 instances or something. And when our demand hit
     the ceiling and then we can modify the quotas to match our demand.
 
 Labels:
@@ -291,7 +302,23 @@ Labels:
 Cloud Trace service:
     Reporting on latency as part of managing performance.
 
-    
+
+======================================================
+Monitoring, Metric, Budgeting and Alert
+
+    Service-Level Indictor:
+        We try to describe the performance of the service we provide, but, 'performance is good' or
+        'bad' are not well define words, so we need something more concrete, which is SLI.
+        For ex: 
+            'the frequency of successful probes of our system'
+        is a SLI.
+
+
+
+
+
+
+
 
 
 ======================================================
