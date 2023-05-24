@@ -1,0 +1,38 @@
+# deployment a dashboard
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.7.0/aio/deploy/recommended.yaml
+# let dashboard can be access via : http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/
+kubectl proxy
+# ls the namespaces 
+kubectl get namespaces
+# get pods in a namespaces
+kubectl get pods -n {namespaces}
+# creating a service account
+kubectl apply -f /Users/azmac/Documents/record/gcpLearning/k8sConfiguration/template-dashboard-adminuser-service.yaml
+# creating a cluster role binding
+kubectl apply -f  /Users/azmac/Documents/record/gcpLearning/k8sConfiguration/template-dashboard-adminuser-binding.yaml
+# getting a bearer token
+kubectl -n kubernetes-dashboard create token admin-user
+# deploy a nginx 
+kubectl apply -f - <<EOF
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+  replicas: 1 
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+EOF
+# expose port
+kubectl expose deployment nginx --type=NodePort --port=80

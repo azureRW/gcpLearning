@@ -1,0 +1,6 @@
+#path : /Users/azmac/Documents/record/gcpLearning/k8sConfiguration/template-dashboard-adminuser-service.yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: admin-user
+  namespace: kubernetes-dashboard
