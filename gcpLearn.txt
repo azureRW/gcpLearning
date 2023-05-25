@@ -20,10 +20,17 @@ GCP storage:
             Use gsutil to upload the files.
 
         gsutil : a python base tool lets we can access GCS from cmd line
-    
+
+        Retention policies: it can let you to configure a policy for a bucket governs
+            how long the objects in the bucket must be retained.
+            If bucket does not have any retention policy, we can delete or replace objects
+            in this bucket at any time, but if it has, we can delete or replace once their
+            age greater than thr retention period.
+
     Cloud Filestore :
         is a network-attached storage service that provides a file system 
         accessible from Compute Engine and Kubernetes Engine.
+        
     
     Cloud SQL :
         is a managed regional database that provides MySQL and PostgreSQL server. 
@@ -159,8 +166,12 @@ network:
         
 
     Cloud NAT:
-                
 
+    Istio/(Anthos Service Mesh)/(Service Mesh):
+        It provides routing, load-balancing, throttling, telemetry, circuit-breaking,
+        authenticating and authorizing. Generally, It is a network proxy for a container .
+        Its responsibility and the Service in K8S is kind overlap, but anyway.
+                
 ======================================================
 I do not know where it should be
 
@@ -206,6 +217,14 @@ Compute system
         
         in kubctl, we can get pod via this command:
             >kubctl get pods --selector=app=nginx
+
+    Dataproc:
+         is a fully managed and highly scalable service for running Apache Hadoop, 
+         Apache Spark, Apache Flink, Presto, and 30+ open source tools and frameworks.
+         Generally, something relate to data science.
+
+        
+        
         
 ======================================================
 k8s
@@ -250,10 +269,6 @@ Migration
         Optimize : 
             In this phase, you begin to take advantage of the cloud technologies and capabilities.
             
-    Anothos:
-        a app can help when migration
-
-
 
 ======================================================
 Cloud IAM (security) The hierarchy in gcp from high is started with organization, folders, projects, resources.
@@ -312,12 +327,6 @@ Monitoring, Metric, Budgeting and Alert
         For ex: 
             'the frequency of successful probes of our system'
         is a SLI.
-
-
-
-
-
-
 
 
 
