@@ -84,6 +84,15 @@ GCP storage:
         It also support ACID transaction and multi-region replication.
         If our data lager than 1 tb google, recommend us to use Cloud Bigtable.
 
+    Date lake
+        It means a lot of data from IOT, website, phone applications, or social media ...
+        This data can be rational or no-rational and structure or no-structure.
+        Generally, a large shit and if we follow google practices, they recommend to use
+        GCS to storage them because financial reason and use BigQuery, Dataflow and 
+        Dataproc to analysis them.
+
+    
+
 ======================================================
 
 network:
@@ -166,11 +175,20 @@ network:
         
 
     Cloud NAT:
+        nothing special, NAT
 
     Istio/(Anthos Service Mesh)/(Service Mesh):
         It provides routing, load-balancing, throttling, telemetry, circuit-breaking,
         authenticating and authorizing. Generally, It is a network proxy for a container .
         Its responsibility and the Service in K8S is kind overlap, but anyway.
+        
+    Identity-Aware proxy:
+        IAP, as its name which is a network proxy for instance or some other resources on GCP,
+        if we do not want this resources have public but we still need to access it via SSH
+        or RDP from our office, IAP can help and be safely.
+        And the thing important is IAP provide role based authorize control so when the context
+        relates to this topic, we should consider to use IAP.
+
                 
 ======================================================
 I do not know where it should be
@@ -179,6 +197,7 @@ Resilience test :
     It is something about terminate resources but service should not  be affected.
 
 Reliable :
+    System can be scaled up and maintained easily
 
 High availability :
     HA means we have to reduce downtime to the minima. When it comes to CloudSql,
@@ -311,11 +330,11 @@ Quotas:
     the ceiling and then we can modify the quotas to match our demand.
 
 Labels:
-    Labels ate key value pairs that we can attache to our resources. It is convenient when we need to manage the 
+    Labels are key value pairs that we can attache to our resources. It is convenient when we need to manage the 
     billing of our resources and we need to statistic consumption.
 
 Cloud Trace service:
-    Reporting on latency as part of managing performance.
+    Reporting on latency is a part of managing performance.
 
 
 ======================================================
