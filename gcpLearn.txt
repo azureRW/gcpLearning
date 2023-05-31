@@ -51,24 +51,25 @@ GCP storage:
                 Failover:
                     It is concentrate in disaster recovery, but it seems to be decrypted. 
 
-        OLAP and regional => Cloud Spanner
+        OLTP and regional => Cloud Spanner
         Binary logging : something can help if catastrophic failure happen.
 
     
     Cloud Spanner :
         is a managed SQL database that supports horizontal scaling and scale globally.
-        OLAP and globally => Cloud Spanner
+        OLTP and globally => Cloud Spanner
     
     BigQuery :
         is a managed analytics service that uses SQL language to query data. 
         It can handle large amounts of data (TB or PB) and return analytic information.
         OLAP=>BQ
+        * slower than Bigtable
     
     Cloud Bigtable 
         is a PB-scale NoSQL and key-value database for analytic operations, 
         such as IOT services and ML. It has follower features, low latency, 
         PB-scale, regional replication, specific commands, and supports Hadoop and HBase.
-        It is appropriate for time serials data.
+        It is appropriate for time serials data and heavily read/ write events.
         but! it so not support transaction.
     
     Cloud Datastore     
@@ -87,9 +88,9 @@ GCP storage:
     Date lake
         It means a lot of data from IOT, website, phone applications, or social media ...
         This data can be rational or no-rational and structure or no-structure.
-        Generally, a large shit and if we follow google practices, they recommend to use
+        Generally, a large shit and if we follow google recommend practices, we use
         GCS to storage them because financial reason and use BigQuery, Dataflow and 
-        Dataproc to analysis them.
+        Dataproc... to analysis them.
 
     
 
