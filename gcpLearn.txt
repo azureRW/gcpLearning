@@ -19,7 +19,18 @@ GCP storage:
             Supply the encryption key in a .boto configuration file.
             Use gsutil to upload the files.
 
-        gsutil : a python base tool lets we can access GCS from cmd line
+        gsutil : 
+            a python base tool lets we can access GCS from cmd line
+            local <-> gcp
+
+        Storage Transfer Service:
+            A tool can help migrate data from 3-party provider to gcp.
+            cloud <-> gcp
+
+        Transfer Appliance:
+            A physical way migrate data to gcp. 
+            (thy will give you a hard disk and you can put data in and send it via express) 
+    
 
         Retention policies: it can let you to configure a policy for a bucket governs
             how long the objects in the bucket must be retained.
@@ -59,9 +70,10 @@ GCP storage:
         is a managed SQL database that supports horizontal scaling and scale globally.
         OLTP and globally => Cloud Spanner
     
-    BigQuery :
+    BigQuery : 
         is a managed analytics service that uses SQL language to query data. 
         It can handle large amounts of data (TB or PB) and return analytic information.
+        It is appropriate for analysis and reporting.
         OLAP=>BQ
         * slower than Bigtable
     
@@ -71,6 +83,8 @@ GCP storage:
         PB-scale, regional replication, specific commands, and supports Hadoop and HBase.
         It is appropriate for time serials data and heavily read/ write events.
         but! it so not support transaction.
+        If we encounter any performance problem, we can check our row key strategy first to ensure the keys
+        are evenly spread across alphabets.
     
     Cloud Datastore     
         is a managed document database that uses a flexible 
@@ -150,6 +164,10 @@ network:
                 need to care about the security problem, but the drawback is that cost is expensive so if low
                 latency and high availability is not required then Cloud VPN is the better option.
                 * If it is a selection we should prefer this first.
+                * It is not possible upgrade a Interconnect circuit from 10Gbps(low traffic) to 100Gbps(hight traffic).
+                  If you want to migrate to 100 Gbps, you must first provision a new 100-Gbps Interconnect connection alongside your existing 10-Gbps 
+                  connection, and then migrate the traffic onto the 100-Gbps connection.
+                  
             
             Cloud VPN 
                 is a security process to encrypted the data between two networks.
@@ -273,6 +291,37 @@ k8s
 
 
 ======================================================
+Case
+
+    Helicopter Racing League
+        
+
+        Our CEO, S. Hawke, wants to bring high-adrenaline racing to fans all around the world. 
+        We listen to our fans, and they want enhanced video streams that include predictions of 
+        events within the race (e.g., overtaking). Our current platform allows us to predict race 
+        outcomes but lacks the facility to support real-time predictions during races and the capacity 
+        to process season-long results.
+        
+        Q :
+        For this question, refer to the Helicopter Racing League (HRL) case study. HRL is looking 
+        for a cost-effective approach for storing their race data such as telemetry. They want to 
+        keep all historical records, train models using only the previous season's data, and plan 
+        for data growth in terms of volume and information collected. You need to propose a data solution. 
+        Considering HRL business requirements and the goals expressed by CEO S. Hawke, what should you do?
+        
+        A. Use Firestore for its scalable and flexible document-based database. Use collections to aggregate race data by season and event.
+        B. Use Cloud Spanner for its scalability and ability to version schemas with zero downtime. Split race data using season as a primary key.
+ans ->  C. Use BigQuery for its scalability and ability to add columns to a schema. Partition race data based on season. Most Voted
+        D. Use Cloud SQL for its ability to automatically manage storage increases and compatibility with MySQL. Use separate database instances for each season.
+
+        Cloud SQL is a reginal service and it also does not support auto scaling, D can be eliminated.
+        Cloud Spanner is expensive which does not very match cost-effective approach, even if it is not a good reason, we can eliminated it first.
+        For the reason, that they want train some models, BQ is a better solution than Firestore.
+
+
+
+======================================================
+
 
 Migration
 
