@@ -242,6 +242,7 @@ Compute system
         The features of app engine is that it can natively hold several versions of app(or services) 
         at same time. Then we can test its function or rall back it conveniently.
         So, when it comes to version control, we should select this.
+        App engine is a reginal service. 
 
     Google Kubernetes Engine:
 
