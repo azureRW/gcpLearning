@@ -242,7 +242,7 @@ Compute system
         The features of app engine is that it can natively hold several versions of app(or services) 
         at same time. Then we can test its function or rall back it conveniently.
         So, when it comes to version control, we should select this.
-        App engine is a reginal service. 
+        App engine is a regional service. 
 
     Google Kubernetes Engine:
 
@@ -315,7 +315,7 @@ Case
 ans ->  C. Use BigQuery for its scalability and ability to add columns to a schema. Partition race data based on season. Most Voted
         D. Use Cloud SQL for its ability to automatically manage storage increases and compatibility with MySQL. Use separate database instances for each season.
 
-        Cloud SQL is a reginal service and it also does not support auto scaling, D can be eliminated.
+        Cloud SQL is a regional service and it also does not support auto scaling, D can be eliminated.
         Cloud Spanner is expensive which does not very match cost-effective approach, even if it is not a good reason, we can eliminated it first.
         For the reason, that they want train some models, BQ is a better solution than Firestore.
 
