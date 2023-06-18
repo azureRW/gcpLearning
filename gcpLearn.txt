@@ -257,6 +257,9 @@ Compute system
         in kubctl, we can get pod via this command:
             >kubctl get pods --selector=app=nginx
 
+    Cloud Run:
+        A regional service.
+
     Dataproc:
          is a fully managed and highly scalable service for running Apache Hadoop, 
          Apache Spark, Apache Flink, Presto, and 30+ open source tools and frameworks.
@@ -366,13 +369,33 @@ Cloud IAM (security) The hierarchy in gcp from high is started with organization
         
         cloud identity domains: Google Cloud customers who are not Workspace customers 
             can get these same capabilities through Cloud Identity. 
+
+
+    Resources:
+       Such as CloudSql, instances, and Buckets are resources, be more specific there are 'service-level resources'.
+       There are also another kind of resources, Account-level resources, such as organization itself, project, folders are. 
+       
     
     IAM resource hierarchy:
         A policy is a collection of access statements attached to resources.
         Each policy contains a set of roles and role members
-        The policies will be inherited from node's ancestor.(From hight to low)
+        The policies will be inherited from node's ancestors.(From hight to low)
         For ex: I am a project owner and I granted Andy a folder owner under my project 
         then Andy will automatically have the hierarchy to access any resources in this folder.
+
+    Google practices:
+        Google recommend us to create the project like follower.
+
+                Domain (XXX.co)
+                    |
+                organization (root node)
+                    |
+                folders (departments/teams)
+                    |
+                projects
+                    |
+                resource (service-level resources)
+    
         
 ======================================================
 Quotas:
